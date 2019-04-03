@@ -1,137 +1,133 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Serious business</title>
-    </head>
-    <style>
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Serious business</title>
+                </head>
+                <style>
 
 
-        h1 {
-            text-align: center
-        }
+                    h1 {
+                        text-align: center
+                    }
 
-        .column {
-            float: left;
-            width: 50%;
-            border-style: solid;
-            text-align: center;
-            margin: auto;
-        }
+                    .column {
+                        float: left;
+                        width: 50%;
+                        border-style: solid;
+                        text-align: center;
+                        margin: auto;
+                    }
 
-        .row:after {
-            content:"";
-            display: table;
-            clear: both;
-        }
+                    .row:after {
+                        content:"";
+                        display: table;
+                        clear: both;
+                    }
 
-        .row {
-            display: flex;
-        }
-        .column {
-            flex: 50%;
-        }
-        #OpenClosed {
-            font-size: 300%;
-        }
-        button {
-            margin:auto;
-            display:block;
-            font-size: 250%;
-        }
+                    .row {
+                        display: flex;
+                    }
+                    .column {
+                        flex: 50%;
+                    }
+                    #OpenClosed {
+                        font-size: 300%;
+                    }
+                    button {
+                        margin:auto;
+                        display:block;
+                        font-size: 250%;
+                    }
 
-    </style>
+                    ul{
+                        list-style-type:none;
+                        list-style-position: inside;
+                        text-align: center;
+                        padding: 0;
+                    }
 
-    <body>
+                </style>
 
-
-    <h1>Serious business</h1>
-
-    <div class="row">
-        <div class="column">
-            <h2>Column 1</h2>
-            <p>Openingsuren</p>
-            <ul>
-                <li>Monday: 9u-17u</li>
-                <li>Thuesday: 9u-17u</li>
-                <li>Wednesday: 9u-17u</li>
-                <li>Thursday: 9u-17u</li>
-                <li>Friday: 9u-17u</li>
-                <li>Saturday: Closed</li>
-                <li>Sunday: Closed</li>
-            </ul>
-        </div>
-        <div class="column" id="OpenClosed">
-
-        </div>
-    </div>
-<br><br>
-    <span id="span"></span>
-
-<button id="closeearly">Close Early</button>
-
-    </body>
-    <script>
-
-        var span = document.getElementById('span');
-
-        function time() {
-            var d = new Date();
-            var s = d.getSeconds();
-            var m = d.getMinutes();
-            var h = d.getHours();
-            span.textContent = h + ":" + m + ":" + s;
-        }
-
-        setInterval(time,1);
-
-    var d =new Date();
-    var hours = d.getHours();
+                <body>
 
 
-        var weekday = new Array(7);
-        weekday[0] = "Monday";
-        weekday[1] = "Tuesday";
-        weekday[2] = "Wednesday";
-        weekday[3] = "Thursday";
-        weekday[4] = "Friday";
-        weekday[5] = "Saturday";
-        weekday[6] = "Sunday";
+                <h1>Serious business</h1>
 
-    function openClose() {
-        if (weekday >= 4) {
+                <div class="row">
+                    <div class="column">
+                        <h2>Openingsuren</h2>
+                        <ul>
+                            <li id="Monday">Monday: 9u-17u</li>
+                            <li id="Thuesday">Thuesday: 9u-17u</li>
+                            <li id="Wednesday">Wednesday: 9u-17u</li>
+                            <li id="Thursday">Thursday: 9u-17u</li>
+                            <li id="Friday">Friday: 9u-17u</li>
+                            <li id="Saturday">Saturday: Closed</li>
+                            <li id="Sunday">Sunday: Closed</li>
+                        </ul>
+                    </div>
+                    <div class="column" id="OpenClosed">
 
-            document.getElementById("OpenClosed").innerText = 'Open'
-        }
-        else {
-            document.getElementById("OpenClosed").innerText = 'Closed'
-        }
-    }
+                    </div>
+                </div>
+            <br><br>
+                <span id="span"></span>
 
-        openClose();
+            <button id="closeearly">Close Early</button>
 
+                </body>
+                <script>
 
+                    var span = document.getElementById('span');
 
+                    function time() {
+                        var d = new Date();
+                        var s = d.getSeconds();
+                        var m = d.getMinutes();
+                        var h = d.getHours();
+                        span.textContent = h + ":" + m + ":" + s;
+                    }
+                    setInterval(time,1);
 
-    function openingsHours () {
-        if (hours >=9 && hours >=17) {
-            document.getElementById('OpenClosed').innerText = 'Closed'
-        }
-        else {
-            document.getElementById('OpenClosed').innerText = 'Open'
-        }
-    }
-
-    openingsHours();
-
-
-        var button=document.getElementById("closearly");
+                var d =new Date();
+                var hours = d.getHours();
+                var day = d.getDay();
 
             closeearly.addEventListener('click', function closeEarly () {
-                document.getElementById("OpenClosed").innerText = 'Sorry we close early today'
-        });
+            document.getElementById(weekday[day]).innerHTML =(weekday[day]+": 9u-"+hours);});
 
 
+                function openClose() {
+                    console.log(day)
+                    if (day=== 0 || day=== 6) {
 
-    </script>
-    </html>
+                        document.getElementById("OpenClosed").innerText = 'Closed'
+                    }
+                    else {
+                        openingsHours();
+                    }
+                }
+
+            openClose();
+
+
+                    function openingsHours () {
+                        if (hours >=9 && hours >=17) {
+                            document.getElementById('OpenClosed').innerText = 'Closed'
+                        }
+                        else {
+                            document.getElementById('OpenClosed').innerText = 'Open'
+                        }
+                    }
+
+
+                    var button=document.getElementById("closearly");
+
+                        closeearly.addEventListener('click', function closeEarly () {
+                            document.getElementById("OpenClosed").innerText = 'Sorry we close early today'
+
+                    });
+
+                </script>
+                </html>
